@@ -1,6 +1,10 @@
 import { ToDo } from './../../models/todo.model';
 import { Component } from '@angular/core';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem,
+} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-board',
@@ -23,21 +27,46 @@ export class BoardComponent {
   todos: ToDo[] = [
     {
       id: '1',
-      title: 'Task 1',
+      title: 'Buy a unicorn',
     },
     {
       id: '2',
-      title: 'Task 2',
+      title: 'Watch Netflix',
     },
     {
       id: '3',
-      title: 'Task 3',
+      title: 'Make dishes',
+    },
+  ];
+  doing: ToDo[] = [
+    {
+      id: '2',
+      title: 'Watch Netflix',
+    },
+  ];
+  done: ToDo[] = [
+    {
+      id: '4',
+      title: 'Play LOL',
     },
   ];
 
   // metodo para ordenar la lista de tareas
-  drop(event: CdkDragDrop<any[]>) {
+  drop(event: CdkDragDrop<ToDo[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    }
     console.log(event);
-    moveItemInArray(this.todos, event.previousIndex, event.currentIndex);
   }
 }
