@@ -1,4 +1,4 @@
-import { ToDo } from './../../models/todo.model';
+import { ToDo, Column } from './../../models/todo.model';
 import { Component } from '@angular/core';
 import {
   CdkDragDrop,
@@ -24,32 +24,47 @@ import {
   ],
 })
 export class BoardComponent {
-  todos: ToDo[] = [
+  columns: Column[] = [
     {
-      id: '1',
-      title: 'Buy a unicorn',
+      title: 'ToDo',
+      todos: [
+        {
+          id: '1',
+          title: 'Buy a unicorn',
+        },
+        {
+          id: '2',
+          title: 'Watch Netflix',
+        },
+        {
+          id: '3',
+          title: 'Make dishes',
+        },
+      ],
     },
     {
-      id: '2',
-      title: 'Watch Netflix',
+      title: 'Doing',
+      todos: [
+        {
+          id: '2',
+          title: 'Watch Netflix',
+        },
+      ],
     },
     {
-      id: '3',
-      title: 'Make dishes',
+      title: 'Done',
+      todos: [
+        {
+          id: '4',
+          title: 'Play LOL',
+        },
+      ],
     },
   ];
-  doing: ToDo[] = [
-    {
-      id: '2',
-      title: 'Watch Netflix',
-    },
-  ];
-  done: ToDo[] = [
-    {
-      id: '4',
-      title: 'Play LOL',
-    },
-  ];
+
+  todos: ToDo[] = [];
+  doing: ToDo[] = [];
+  done: ToDo[] = [];
 
   // metodo para ordenar la lista de tareas
   drop(event: CdkDragDrop<ToDo[]>) {
@@ -68,5 +83,12 @@ export class BoardComponent {
       );
     }
     console.log(event);
+  }
+
+  addColumn() {
+    this.columns.push({
+      title: 'New Column',
+      todos: [],
+    });
   }
 }
