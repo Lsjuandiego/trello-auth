@@ -5,7 +5,7 @@
     <table
       class="w-full text-left text-sm text-gray-500"
       cdk-table
-      [dataSource]="products"
+      [dataSource]="dataSource"
     >
       <tr
         cdk-header-row
@@ -46,7 +46,9 @@
         <td cdk-cell class="px-6 py-4" *cdkCellDef="let row">
           {{ row.price }}
         </td>
-        <td cdk-footer-cell class="px-6 py-3" *cdkFooterCellDef="">{{total}}</td>
+        <td cdk-footer-cell class="px-6 py-3" *cdkFooterCellDef="">
+          {{ total }}
+        </td>
       </ng-container>
 
       <!-- Cover column -->
@@ -56,6 +58,16 @@
           <img class="w-20" [src]="row.images[0]" alt="" />
         </td>
         <td cdk-footer-cell class="px-6 py-3" *cdkFooterCellDef=""></td>
+      </ng-container>
+
+      <!-- actions column -->
+      <ng-container cdkColumnDef="actions">
+        <th cdk-header-cell class="px-6 py-3" *cdkHeaderCellDef="">Actions.</th>
+        <td cdk-cell class="px-6 py-4" *cdkCellDef="let row">
+          <app-btn (click)="update(row)">Update</app-btn>
+        </td>
+        <td cdk-footer-cell class="px-6 py-3" *cdkFooterCellDef="">
+        </td>
       </ng-container>
     </table>
   </div>
