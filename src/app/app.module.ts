@@ -15,6 +15,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { BoardComponent } from './pages/board/board.component';
 import { TodoDialogComponent } from './components/todo-dialog/todo-dialog.component';
 import { ScrollComponent } from './pages/scroll/scroll.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 
 
@@ -37,7 +38,8 @@ import { ScrollComponent } from './pages/scroll/scroll.component';
     CdkAccordionModule,
     DragDropModule,
     DialogModule,
-    HttpClientModule
+    HttpClientModule,
+    ScrollingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
