@@ -1,5 +1,7 @@
 import { ToDo, Column } from './../../models/todo.model';
 import { Component } from '@angular/core';
+import { Dialog } from '@angular/cdk/dialog';
+import { TodoDialogComponent } from 'src/app/components/todo-dialog/todo-dialog.component';
 import {
   CdkDragDrop,
   moveItemInArray,
@@ -62,6 +64,8 @@ export class BoardComponent {
     },
   ];
 
+  constructor(private dialog: Dialog) {}
+
   todos: ToDo[] = [];
   doing: ToDo[] = [];
   done: ToDo[] = [];
@@ -89,6 +93,14 @@ export class BoardComponent {
     this.columns.push({
       title: 'New Column',
       todos: [],
+    });
+  }
+
+  openDialog() {
+    this.dialog.open(TodoDialogComponent, {
+      minWidth: '300px',
+      maxWidth: '30%',
+      autoFocus: false,
     });
   }
 }
